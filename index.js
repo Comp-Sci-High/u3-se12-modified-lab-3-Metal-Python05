@@ -172,25 +172,39 @@ app.get("/", (req, res) => {
 
 // Coding Exercises
 // 1. Set up the /planets path that sends back the entire planets array
-
+app.get ("/planets",(req,res) => {
+    res.json(spaceData.planets)
+})
 
 // 2. Set up the /planets/{id} path that sends back the planet object based on index
 // e.g. /planets/0 sends back Mercury's object
+app.get("/planets/:id",(req,res)=>{ 
+    const index = req.params.id 
+    res.json(spaceData.planets [index]);
 
+})
 
 
 // 3. Set up /planets/{id}/moons path that sends back just the moons of the planet
 // e.g. /planets/3/moons sends back Mars's moons array
+app.get("/planets/:id/moons",(req,res)=>{ 
+    const index = req.params.id 
+    res.json(spaceData.planets [index].moons);
 
+})
 
 
 // 4. Set up the /ISS/{id} path that sends back the astronaut object based on index
 // e.g. /ISS/2 sends back Donald Pettit's object
+app.get("/ISS/:id",(req,res)=>{ 
+    const index = req.params.id 
+    res.json(spaceData.stations.ISS.astronauts [index]);
 
+})
 
 
 app.use((req, res, next) => {
-  res.send("404 Not Found)
+  res.send("404 Not Found")
   next()
 })
 
